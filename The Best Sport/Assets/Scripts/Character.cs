@@ -17,7 +17,7 @@ public class Character
 
     AbilityWithInput[] abilities;
 
-    PlayerInput myPlayer;
+    public PlayerInput myPlayer;
 
     public void Initialize(PlayerInput _playerInput, Rigidbody2D _rb) 
     { 
@@ -34,6 +34,7 @@ public class Character
             if (a.input != null)
             {
                 myPlayer.actions[a.input.name].performed -= a.ability.PerformOnInput;
+                myPlayer.actions[a.input.name].canceled -= a.ability.PerformOnCancelInput;
             }
         }
     }
@@ -66,6 +67,7 @@ public class Character
             {
                 //Split the name
                 myPlayer.actions[a.input.name].performed += a.ability.PerformOnInput;
+                myPlayer.actions[a.input.name].canceled += a.ability.PerformOnCancelInput;
             }
         }
     }

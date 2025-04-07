@@ -22,4 +22,10 @@ public class Ability
     {
         return;
     }
+
+
+    public virtual void PerformOnCancelInput(InputAction.CallbackContext context)
+    {
+        return;
+    }
 }
