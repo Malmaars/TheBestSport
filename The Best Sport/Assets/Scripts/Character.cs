@@ -55,7 +55,13 @@ public class Character
     public void ReadOutCharacter(CharacterObject _toRead)
     {
         myName = _toRead.CharacterName;
-        abilities = _toRead.abilities;
+
+        abilities = new AbilityWithInput[_toRead.abilities.Length];
+        for(int i = 0; i < _toRead.abilities.Length; i++) 
+        {
+            AbilityWithInput reference = _toRead.abilities[i];
+            abilities[i] = new AbilityWithInput(reference);
+        }
     }
 
     void InitializeAbilities()

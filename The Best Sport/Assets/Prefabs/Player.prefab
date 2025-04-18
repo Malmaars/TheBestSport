@@ -156,6 +156,7 @@ MonoBehaviour:
   minGroundDotProduct: 0.5
   myCharacters:
   - myCharacter: {fileID: 11400000, guid: a20ae5e1fe60b6d40b864d01ea148487, type: 2}
+    myPlayer: {fileID: 0}
 --- !u!61 &1117944987623974971
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,6 +13,5 @@ public class Punch : Ability
     public override void PerformOnInput(InputAction.CallbackContext context)
     {
         //get input direction
-
     }
 }

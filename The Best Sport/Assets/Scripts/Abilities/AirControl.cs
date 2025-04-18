@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[Serializable]
-public class Walk : Ability
+public class AirControl : Ability
 {
-
-    public Walk(Walk reference)
+    public AirControl(AirControl reference)
     {
         maxSpeed = reference.maxSpeed;
         moveSpeed = reference.moveSpeed;
@@ -17,10 +14,13 @@ public class Walk : Ability
 
     public override void PerformOnUpdate()
     {
-        if (!myCharacter.grounded)
+        if (myCharacter.grounded)
             return;
 
-        myCharacter.rb.linearVelocity = Vector2.MoveTowards(myCharacter.rb.linearVelocity, new Vector2((moveInput.normalized).x * maxSpeed, myCharacter.rb.linearVelocity.y), moveSpeed);
+        if (myCharacter.rb.linearVelocity.x > maxSpeed && moveInput.x > 0 || myCharacter.rb.linearVelocity.x < -maxSpeed && moveInput.x < 0)
+            return;
+
+        myCharacter.rb.linearVelocity += (new Vector2((moveInput.normalized).x * moveSpeed, 0));
     }
 
     public override void PerformOnInput(InputAction.CallbackContext context)

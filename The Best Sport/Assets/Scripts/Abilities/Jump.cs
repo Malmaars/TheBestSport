@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class Jump : Ability
 {
+    public Jump(Jump reference)
+    {
+        jumpForce = reference.jumpForce;
+    }
     public float jumpForce;
     bool desiredJump;
     public override void PerformOnUpdate()
@@ -32,7 +36,6 @@ public class Jump : Ability
 
     public override void PerformOnInput(InputAction.CallbackContext context)
     {
-        Debug.Log("JUMP");
         desiredJump = true;
     }
 

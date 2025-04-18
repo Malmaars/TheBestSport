@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
             currentCharacter.Disable();
 
         currentCharacter = newChar;
-        currentCharacter.Initialize(playerInput, rb);
+        currentCharacter.Initialize(playerInput, rb);   
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
