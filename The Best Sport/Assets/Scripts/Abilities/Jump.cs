@@ -4,13 +4,12 @@ using UnityEngine.InputSystem;
 
 [Serializable]
 public class Jump : Ability
-{
-    public Jump(Jump reference)
-    {
-        jumpForce = reference.jumpForce;
-    }
+{ 
     public float jumpForce;
     bool desiredJump;
+
+    public Jump(Ability reference) : base(reference) { }
+
     public override void PerformOnUpdate()
     {
         HandleJump();

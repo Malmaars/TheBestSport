@@ -6,14 +6,11 @@ using UnityEngine.InputSystem;
 public class Walk : Ability
 {
 
-    public Walk(Walk reference)
-    {
-        maxSpeed = reference.maxSpeed;
-        moveSpeed = reference.moveSpeed;
-    }
     public float maxSpeed;
     public float moveSpeed;
     Vector2 moveInput;
+
+    public Walk(Ability reference) : base(reference) { }
 
     public override void PerformOnUpdate()
     {

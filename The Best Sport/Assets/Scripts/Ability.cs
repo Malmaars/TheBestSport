@@ -1,4 +1,6 @@
+using NaughtyAttributes.Test;
 using System;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +8,18 @@ using UnityEngine.InputSystem;
 public class Ability
 {
     protected Character myCharacter;
+
+
+    public Ability(Ability reference)
+    {
+        // Use reflection to copy all public instance fields
+        FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var field in fields)
+        {
+            field.SetValue(this, field.GetValue(reference));
+        }
+    }
 
     public virtual void Initialize(Character _character)
     {

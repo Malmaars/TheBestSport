@@ -16,13 +16,13 @@ MonoBehaviour:
   abilities:
   - ability:
       rid: 8433259817173516360
-    input: 1
+    input: {fileID: -4919983070698100069, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
   - ability:
       rid: 8433259817173516408
-    input: 0
+    input: {fileID: -6418742048996279687, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
   - ability:
       rid: 8433259861952430182
-    input: 0
+    input: {fileID: -6418742048996279687, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
   references:
     version: 2
     RefIds:

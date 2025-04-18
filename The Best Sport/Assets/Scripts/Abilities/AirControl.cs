@@ -2,15 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class AirControl : Ability
-{
-    public AirControl(AirControl reference)
-    {
-        maxSpeed = reference.maxSpeed;
-        moveSpeed = reference.moveSpeed;
-    }
+{ 
     public float maxSpeed;
     public float moveSpeed;
     Vector2 moveInput;
+
+    public AirControl(Ability reference) : base(reference) { }
 
     public override void PerformOnUpdate()
     {
