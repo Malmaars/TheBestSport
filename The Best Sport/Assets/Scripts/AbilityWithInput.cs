@@ -1,25 +1,23 @@
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System.Reflection;
 
 [Serializable]
 public class AbilityWithInput
 {
     public AbilityWithInput(AbilityWithInput reference)
     {
-        string type = reference.ability.GetType().Name;
-        
-        switch (type)
+        Type abilityType = reference.ability.GetType();
+        ConstructorInfo constructor = abilityType.GetConstructor(new[] { abilityType });
+
+        if (constructor != null)
         {
-            case "Jump":
-                ability = new Jump(reference.ability as Jump);
-                break;
-            case "Walk":
-                ability = new Walk(reference.ability as Walk);
-                break;
-            case "AirControl":
-                ability = new AirControl(reference.ability as AirControl);
-                break;
+            ability = constructor.Invoke(new object[] { reference.ability }) as Ability;
+        }
+        else
+        {
+            throw new InvalidOperationException($"No copy constructor found for type {abilityType.Name}");
         }
 
         input = reference.input;
@@ -27,4 +25,5 @@ public class AbilityWithInput
     [SerializeReference]
     public Ability ability;
     public InputActionReference input;
+    public InputActionReference secondaryInput;
 }
