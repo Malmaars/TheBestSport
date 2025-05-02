@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
                 playerControls.Player.Jump,
                 playerControls.Player.Attack,
                 playerControls.Player.SwitchLeft,
-                playerControls.Player.SwitchRight
+                playerControls.Player.SwitchRight,
+                playerControls.Player.Aim
             });
 
         InputDistributor.inputManager = playerInputManager;

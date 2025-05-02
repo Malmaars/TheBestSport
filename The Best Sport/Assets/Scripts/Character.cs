@@ -3,6 +3,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 [Serializable]
 public class Character
@@ -11,7 +12,7 @@ public class Character
 
     public CharacterObject myCharacter;
 
-    public Rigidbody2D rb { get; private set; }
+    public Rigidbody rb { get; private set; }
 
     string myName;
 
@@ -19,7 +20,7 @@ public class Character
 
     public PlayerInput myPlayer;
 
-    public void Initialize(PlayerInput _playerInput, Rigidbody2D _rb) 
+    public void Initialize(PlayerInput _playerInput, Rigidbody _rb) 
     { 
         myPlayer = _playerInput;
         rb = _rb;
@@ -35,6 +36,11 @@ public class Character
             {
                 myPlayer.actions[a.input.name].performed -= a.ability.PerformOnInput;
                 myPlayer.actions[a.input.name].canceled -= a.ability.PerformOnCancelInput;
+            }
+            if (a.secondaryInput != null)
+            {
+                myPlayer.actions[a.secondaryInput.name].performed -= a.ability.PerformOnSecondaryInput;
+                myPlayer.actions[a.secondaryInput.name].canceled -= a.ability.PerformOnSecondaryCancelInput;
             }
         }
     }
@@ -64,6 +70,14 @@ public class Character
         }
     }
 
+    public void DrawGizmos()
+    {
+        foreach(AbilityWithInput a in abilities)
+        {
+            a.ability.OnDrawGizmos();
+        }
+    }
+
     void InitializeAbilities()
     {
         foreach(AbilityWithInput a in abilities)
@@ -71,9 +85,13 @@ public class Character
             a.ability.Initialize(this);
             if(a.input != null)
             {
-                //Split the name
                 myPlayer.actions[a.input.name].performed += a.ability.PerformOnInput;
                 myPlayer.actions[a.input.name].canceled += a.ability.PerformOnCancelInput;
+            }
+            if (a.secondaryInput != null)
+            {
+                myPlayer.actions[a.secondaryInput.name].performed += a.ability.PerformOnSecondaryInput;
+                myPlayer.actions[a.secondaryInput.name].canceled += a.ability.PerformOnSecondaryCancelInput;
             }
         }
     }

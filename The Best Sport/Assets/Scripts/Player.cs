@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public Rigidbody2D rb;
+    Rigidbody rb;
 
     bool grounded;
     public float minGroundDotProduct;
@@ -14,10 +14,11 @@ public class Player : MonoBehaviour
     public List<Character> myCharacters;
     Character currentCharacter;
 
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
     }
     private void Update()
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
         currentCharacter.Initialize(playerInput, rb);   
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (!this.enabled)
             return;
@@ -58,18 +59,26 @@ public class Player : MonoBehaviour
         //rb.linearVelocity = -collision.rigidbody.linearVelocity;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnDrawGizmos()
+    {
+        if (!this.enabled) return;
+
+        if (currentCharacter != null)
+            currentCharacter.DrawGizmos();
+    }
+
+    private void OnCollisionStay(Collision collision)
     {
         if (!this.enabled) return;
         EvaluateCollision(collision);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit(Collision collision)
     {
         if (!this.enabled) return;
         EvaluateCollision(collision);
     }
-    void EvaluateCollision(Collision2D collision)
+    void EvaluateCollision(Collision collision)
     {
         int groundContactCount = 0;
         Vector2 contactNormal = new Vector2();

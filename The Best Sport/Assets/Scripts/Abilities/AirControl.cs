@@ -7,6 +7,8 @@ public class AirControl : Ability
     public float moveSpeed;
     Vector2 moveInput;
 
+    public AirControl() : base() { }
+
     public AirControl(Ability reference) : base(reference) { }
 
     public override void PerformOnUpdate()
@@ -17,7 +19,7 @@ public class AirControl : Ability
         if (myCharacter.rb.linearVelocity.x > maxSpeed && moveInput.x > 0 || myCharacter.rb.linearVelocity.x < -maxSpeed && moveInput.x < 0)
             return;
 
-        myCharacter.rb.linearVelocity += (new Vector2((moveInput.normalized).x * moveSpeed, 0));
+        myCharacter.rb.linearVelocity += (new Vector3((moveInput.normalized).x * moveSpeed, 0));
     }
 
     public override void PerformOnInput(InputAction.CallbackContext context)

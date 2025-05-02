@@ -10,6 +10,8 @@ public class Walk : Ability
     public float moveSpeed;
     Vector2 moveInput;
 
+    public Walk() : base() { }
+
     public Walk(Ability reference) : base(reference) { }
 
     public override void PerformOnUpdate()

@@ -1,5 +1,6 @@
 using NaughtyAttributes.Test;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,8 @@ using UnityEngine.InputSystem;
 public class Ability
 {
     protected Character myCharacter;
-
+    
+    public Ability() { }
 
     public Ability(Ability reference)
     {
@@ -26,20 +28,14 @@ public class Ability
         myCharacter = _character;
     }
 
+    public virtual void PerformOnUpdate() { return; }
 
-    public virtual void PerformOnUpdate()
-    {
-        return;
-    }
+    public virtual void PerformOnInput(InputAction.CallbackContext context) { return; }
 
-    public virtual void PerformOnInput(InputAction.CallbackContext context)
-    {
-        return;
-    }
+    public virtual void OnDrawGizmos() { return; }
 
+    public virtual void PerformOnSecondaryInput(InputAction.CallbackContext context) { return; }
 
-    public virtual void PerformOnCancelInput(InputAction.CallbackContext context)
-    {
-        return;
-    }
+    public virtual void PerformOnCancelInput(InputAction.CallbackContext context) { return; }
+    public virtual void PerformOnSecondaryCancelInput(InputAction.CallbackContext context) { return; }
 }

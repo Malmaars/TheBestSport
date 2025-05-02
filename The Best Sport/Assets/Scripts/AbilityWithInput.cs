@@ -21,6 +21,7 @@ public class AbilityWithInput
         }
 
         input = reference.input;
+        secondaryInput = reference.secondaryInput;
     }
     [SerializeReference]
     public Ability ability;

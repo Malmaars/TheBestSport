@@ -8,6 +8,8 @@ public class Jump : Ability
     public float jumpForce;
     bool desiredJump;
 
+    public Jump() : base() { }
+
     public Jump(Ability reference) : base(reference) { }
 
     public override void PerformOnUpdate()
@@ -26,10 +28,12 @@ public class Jump : Ability
 
     void DoJump()
     {
+        Debug.Log("JUMP!");
+
         if (!myCharacter.grounded)
             return;
 
-        myCharacter.rb.AddForce(Vector2.up * jumpForce);
+        myCharacter.rb.AddForce(Vector3.up * jumpForce);
     }
 
 

@@ -17,19 +17,31 @@ MonoBehaviour:
   - ability:
       rid: 8433259817173516360
     input: {fileID: -4919983070698100069, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
+    secondaryInput: {fileID: 0}
   - ability:
       rid: 8433259817173516408
     input: {fileID: -6418742048996279687, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
+    secondaryInput: {fileID: 0}
   - ability:
       rid: 8433259861952430182
     input: {fileID: -6418742048996279687, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
+    secondaryInput: {fileID: 0}
+  - ability:
+      rid: 3654568907628609637
+    input: {fileID: 3012334932371040878, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
+    secondaryInput: {fileID: -8155086485915182959, guid: 78f3df381d0efc74f80082909e41ac8b, type: 3}
   references:
     version: 2
     RefIds:
+    - rid: 3654568907628609637
+      type: {class: Punch, ns: , asm: Assembly-CSharp}
+      data:
+        punchPower: 10
+        punchRange: 2
     - rid: 8433259817173516360
       type: {class: Jump, ns: , asm: Assembly-CSharp}
       data:
-        jumpForce: 1200
+        jumpForce: 2400
     - rid: 8433259817173516408
       type: {class: Walk, ns: , asm: Assembly-CSharp}
       data:
@@ -39,4 +51,4 @@ MonoBehaviour:
       type: {class: AirControl, ns: , asm: Assembly-CSharp}
       data:
         maxSpeed: 10
-        moveSpeed: 0.1
+        moveSpeed: 1
