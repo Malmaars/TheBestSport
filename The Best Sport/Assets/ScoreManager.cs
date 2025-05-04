@@ -30,7 +30,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void AddScore(int points)
+    public void AddScore(int points)
     {
         score += points;
         

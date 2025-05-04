@@ -23,7 +23,7 @@ public class Punch : Ability
         if(debugCube != null)
         {
             Vector3 hitboxPosition = myCharacter.rb.position + new Vector3((lastInputDirection * (punchRange / 2)).x, (lastInputDirection * (punchRange / 2)).y, 0);
-            Vector3 hitboxSize = new Vector3(0.1f, punchRange, 0.1f);
+            Vector3 hitboxSize = new Vector3(0.2f, punchRange, 0.1f);
             Quaternion punchRotation = Quaternion.Euler(0, 0, Mathf.Atan2(lastInputDirection.y, lastInputDirection.x) * Mathf.Rad2Deg + 90);
             debugCube.transform.position = hitboxPosition;
             debugCube.transform.localScale = hitboxSize;
@@ -39,13 +39,18 @@ public class Punch : Ability
         {
             //punch in the last input direction
             Vector3 hitboxPosition = myCharacter.rb.position + new Vector3((lastInputDirection * (punchRange / 2)).x, (lastInputDirection * (punchRange / 2)).y, 0);
-            Vector3 hitboxSize = new Vector3(0.1f, punchRange, 0.1f);
-            Quaternion punchRotation = Quaternion.Euler(0, Mathf.Atan2(lastInputDirection.y, lastInputDirection.x) * Mathf.Rad2Deg, 0);
-            Collider[] hitColliders = Physics.OverlapBox(hitboxPosition, hitboxSize, punchRotation, 6);
+            Vector3 hitboxSize = new Vector3(0.2f, punchRange, 0.5f);
+            Quaternion punchRotation = Quaternion.Euler(0, 0, Mathf.Atan2(lastInputDirection.y, lastInputDirection.x) * Mathf.Rad2Deg + 90);
+            Collider[] hitColliders = Physics.OverlapBox(hitboxPosition, hitboxSize, punchRotation);
 
             foreach(Collider collider in hitColliders)
             {
-
+                if(collider.gameObject.tag == "Ball")
+                {
+                    Debug.Log("Punching Ball");
+                    //give a velocity to the ball   
+                    collider.attachedRigidbody.linearVelocity = lastInputDirection * punchPower;
+                }
             }
         }
     }
